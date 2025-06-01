@@ -14,7 +14,7 @@ Bu proje, **Python** ve **Kivy** kütüphanesi kullanılarak geliştirilmiş bas
 Projeyi klonlayın:
 
 bash
-git clone https://github.com/kullaniciadiniz/Hesap-Makinrsi.git
+git clone https://github.com/kullaniciadiniz/Hesap-Makinesi.git
 cd calculator-app
 
 Uygulamayı çalıştırın:
