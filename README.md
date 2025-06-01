@@ -25,7 +25,7 @@ Bu proje, **Python** ve **Kivy** kütüphanesi kullanılarak geliştirilmiş bas
 ✅ Modern ve kullanıcı dostu arayüz
 
 📸 Ekran Görüntüsü
-![Screenshot](https://imgur.com/a/g296HVD)
+![Screenshot](https://imgur.com/a/g296HVD.png)
 
 🛠 Geliştirme
 Kullanılan Teknolojiler:
