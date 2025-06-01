@@ -11,16 +11,7 @@ Bu proje, **Python** ve **Kivy** kütüphanesi kullanılarak geliştirilmiş bas
    ```bash
    pip install kivy
 
-Projeyi klonlayın:
-
-bash
-git clone https://github.com/kullaniciadiniz/Hesap-Makinesi.git
-cd calculator-app
-
-Uygulamayı çalıştırın:
-
-bash
-python main.py
+-----------------------------------------
 
 🎨 Özellikler
 ✅ Toplama, çıkarma, çarpma, bölme
