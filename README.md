@@ -25,7 +25,7 @@ Bu proje, **Python** ve **Kivy** kütüphanesi kullanılarak geliştirilmiş bas
 ✅ Modern ve kullanıcı dostu arayüz
 
 📸 Ekran Görüntüsü
-Calculator Screenshot (Örnek görsel)
+![Screenshot](https://imgur.com/a/g296HVD)
 
 🛠 Geliştirme
 Kullanılan Teknolojiler:
