@@ -9,13 +9,12 @@ from kivy.core.window import Window
 Window.size = (325, 475)
 
 
-class Calculator(BoxLayout):
+class AnaPencere(BoxLayout):
     def __init__(self, **kwargs):
-
         super().__init__(orientation='vertical', **kwargs)
 
-        # Sonuç ekranını oluşturuyoruz (TextInput widget'ı)
-        self.result = TextInput(
+        # Sonuç ekranını oluşturuyoruz
+        self.sonuc_ekrani = TextInput(
             font_size=40,
             size_hint_y=0.2,
             readonly=True,
@@ -24,10 +23,10 @@ class Calculator(BoxLayout):
             background_color=[0.2, 0.2, 0.2, 1],
             foreground_color=[1, 1, 1, 1],
         )
-        self.add_widget(self.result)
+        self.add_widget(self.sonuc_ekrani)
 
         # Butonları oluşturmak için bir liste tanımlıyoruz
-        buttons = [
+        buton_listesi = [
             ['%', '+/-', '/', 'C'],
             ['7', '8', '9', '*'],
             ['4', '5', '6', '-'],
@@ -35,73 +34,73 @@ class Calculator(BoxLayout):
             ['00', '0', '.', '=']
         ]
 
-        # Butonları yerleştirmek için 4 sütunlu bir GridLayout oluşturuyoruz
-        grid = GridLayout(cols=4, spacing=5, padding=10)
+        # Butonları yerleştirmek için ızgara düzeni oluşturuyoruz
+        buton_izgarasi = GridLayout(cols=4, spacing=5, padding=10)
 
         # Buton listesindeki her öğe için döngü oluşturuyoruz
-        for row in buttons:
-            for item in row:
-
-                button = Button(
-                    text=item,
+        for satir in buton_listesi:
+            for buton_etiketi in satir:
+                buton = Button(
+                    text=buton_etiketi,
                     font_size=32,
-                    background_color=self.set_button_color(item),
-                    on_press=self.button_click  #
+                    background_color=self.buton_rengi_ayarla(buton_etiketi),
+                    on_press=self.butona_tiklandi
                 )
-                grid.add_widget(button)
+                buton_izgarasi.add_widget(buton)
 
-        self.add_widget(grid)
+        self.add_widget(buton_izgarasi)
 
     # Buton renklerini ayarlayan fonksiyon
-    def set_button_color(self, label):
-        if label in {'%', '+/-', '/', 'C'}:
-            return [0.6, 0.6, 0.6, 1]
-        elif label in {"*", "-", "+", "="}:
-            return [1, 0.65, 0, 1]
-        return [0.3, 0.3, 0.3, 1]
+    def buton_rengi_ayarla(self, etiket):
+        if etiket in {'%', '+/-', '/', 'C'}:
+            return [0.3, 0.8, 0.8, 1]
+        elif etiket in {"*", "-", "+", "="}:
+            return [0.1, 0.2, 0.5, 1]
+        return [0.6, 0.8, 1, 1]
 
     # Buton tıklama olayını işleyen fonksiyon
-    def button_click(self, instance):
-        text = instance.text
+    def butona_tiklandi(self, buton):
+        metin = buton.text
 
-        if text == "C":
-            self.result.text = ""
-        elif text == "=":
-            self.calculate()
-        elif text == "+/-":
-            self.toggle_negative()
-        elif text == "%":
-            self.convert_percent()
+        if metin == "C":
+            self.sonuc_ekrani.text = ""
+        elif metin == "=":
+            self.hesapla()
+        elif metin == "+/-":
+            self.negatif_yap()
+        elif metin == "%":
+            self.yuzde_cevir()
         else:
-            self.result.text += text
+            self.sonuc_ekrani.text += metin
 
     # Hesaplama fonksiyonu
-    def calculate(self):
+    def hesapla(self):
         try:
-            self.result.text = str(eval(self.result.text))
+            self.sonuc_ekrani.text = str(eval(self.sonuc_ekrani.text))
         except Exception:
-            self.result.text = "ERROR!"
+            self.sonuc_ekrani.text = "HATA!"
 
     # Pozitif/Negatif değiştirme fonksiyonu
-    def toggle_negative(self):
-        if self.result.text:
-
-            self.result.text = self.result.text[1:] if self.result.text[0] == '-' else '-' + self.result.text
+    def negatif_yap(self):
+        if self.sonuc_ekrani.text:
+            if self.sonuc_ekrani.text[0] == '-':
+                self.sonuc_ekrani.text = self.sonuc_ekrani.text[1:]
+            else:
+                self.sonuc_ekrani.text = '-' + self.sonuc_ekrani.text
 
     # Yüzde işlemi fonksiyonu
-    def convert_percent(self):
+    def yuzde_cevir(self):
         try:
-            self.result.text = str(float(self.result.text) / 100)
+            self.sonuc_ekrani.text = str(float(self.sonuc_ekrani.text) / 100)
         except ValueError:
-            self.result.text = "ERROR!"
+            self.sonuc_ekrani.text = "HATA!"
 
 
 # Ana uygulama sınıfı
-class CalculatorApp(App):
+class HesapMakinesiUygulamasi(App):
     def build(self):
-        return Calculator()
-
+        return AnaPencere()
 
 
 if __name__ == "__main__":
-    CalculatorApp().run()
+    HesapMakinesiUygulamasi().run()
